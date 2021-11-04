@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const widthSimpleEx = Component => props => {
-  const isLogin = localStorage.getItem("auth");
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("auth"));
   const handleLogIn = () => {
     console.log("logIn");
+    localStorage.setItem("auth", true);
+    setIsLogin(() => !isLogin);
   };
   const handleLogOut = () => {
     console.log("logOut");
+    localStorage.removeItem("auth");
+    setIsLogin(() => !isLogin);
   };
 
   return (
